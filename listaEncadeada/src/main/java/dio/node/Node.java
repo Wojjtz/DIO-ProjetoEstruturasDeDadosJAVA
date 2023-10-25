@@ -44,7 +44,7 @@ public class Node <T> {
 
     public String toStringMod(){
         String str = "Node{" +
-                "conteudo=" + conteudo +
+                "conteudo=" + data +
                 '}';
         if(nextNode != null)
             str += "->" + nextNode.toString();
