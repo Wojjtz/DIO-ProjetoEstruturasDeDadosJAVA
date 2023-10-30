@@ -1,7 +1,5 @@
 package dio.arvore.model;
 
-import dio.arvore.Comparable;
-
 public abstract class ObjTree <T> implements Comparable<T> {
 
     public abstract boolean equals(Object o);
