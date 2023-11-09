@@ -9,6 +9,7 @@ public class DublyLinkedList <T> {
         this.head = null;
         this.tail = null;
         this.size = 0;
+
     }
 
     public boolean isEmpty(){
@@ -26,7 +27,6 @@ public class DublyLinkedList <T> {
             newNode.setNextDoubleNode(tail);
             head = newNode;
             tail = newNode;
-            size++;
         }else{
             DoubleNode<T> pointer = head;
 
@@ -37,8 +37,8 @@ public class DublyLinkedList <T> {
             newNode.setPreviousDoubleNode(pointer);
             newNode.setPreviousDoubleNode(null);
             tail = newNode;
-            size++;
         }
+        size++;
     }
 
     public void addHead(T data){
@@ -48,12 +48,22 @@ public class DublyLinkedList <T> {
             newNode.setNextDoubleNode(tail);
             head = newNode;
             tail = newNode;
-            size++;
         }else{
             DoubleNode<T> newDoubleNode = new DoubleNode<>(data, head, null);
             head.setPreviousDoubleNode(newDoubleNode);
             head = newDoubleNode;
         }
+        size++;
+    }
+
+    public void addNextTo(T dataPointer, T data){
+        DoubleNode<T> newNode = new DoubleNode<>(data);
+        DoubleNode pointer = this.getNodePerData(dataPointer);
+
+        newNode.setNextDoubleNode(pointer.getNextDoubleNode());
+        pointer.getNextDoubleNode().setPreviousDoubleNode(newNode);
+        pointer.setNextDoubleNode(newNode);
+        newNode.setPreviousDoubleNode(pointer);
     }
 
     public void addAt(int index, T data){
@@ -74,7 +84,6 @@ public class DublyLinkedList <T> {
         }else{
             newNode.getPreviousDoubleNode().setNextDoubleNode(newNode);
         }
-
         size++;
     }
 
@@ -89,6 +98,12 @@ public class DublyLinkedList <T> {
         for (; index > 0; index--)
             pointer = pointer.getNextDoubleNode();
 
+        return pointer;
+    }
+
+    private DoubleNode<T> getNodePerData(T data){
+        DoubleNode pointer = head;
+        for (; pointer.getData() != data; pointer = pointer.getNextDoubleNode());
         return pointer;
     }
 
@@ -111,7 +126,7 @@ public class DublyLinkedList <T> {
     }
 
     public String toString(){
-        String str = "Lista Encadeada\n";
+        String str = "Lista Duplamente Encadeada\n";
 
         DoubleNode<T> pointer = head;
         for (; pointer != null; pointer = pointer.getNextDoubleNode())

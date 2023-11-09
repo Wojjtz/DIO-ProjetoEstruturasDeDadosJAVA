@@ -74,6 +74,14 @@ public class LinkedList <T>{
         return returnNode;
     }
 
+    public  Node<T> getNodeData(T data){
+        Node<T> pointer = head;
+
+        for (; pointer.getData() != data; pointer = pointer.getNextNode());
+
+        return pointer;
+    }
+
     public T remove(int index){
         Node<T> pivotNode = this.getNode(index);
         if(index == 0){

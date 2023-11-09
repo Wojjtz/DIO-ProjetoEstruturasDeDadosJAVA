@@ -22,18 +22,17 @@ public class CircularLinkedList <T> {
     }
 
     public void add(T data){
+        Node<T> newNode = new Node<>(data);
         if(this.isEmpty()){
-            Node<T> newNode = new Node<>(data);
             head = newNode;
             tail = newNode;
-            size++;
+            this.head.setNextNode(tail);
         }else{
-            Node<T> newNode = new Node<>(data);
-            newNode.setNextNode(head);
+            newNode.setNextNode(tail);
+            head.setNextNode(newNode);
             tail = newNode;
-            head.setNextNode(tail);
-            size++;
         }
+        size++;
     }
 
     public void addHead(T data){
@@ -90,7 +89,7 @@ public class CircularLinkedList <T> {
         String str = "Lista Circular\n";
 
         Node<T> auxNode = tail;
-        for (; auxNode != null; auxNode = auxNode.getNextNode())
+        for (int i = 0; i < size; auxNode = auxNode.getNextNode(), i ++)
             str += auxNode.toString() + "--->";
 
         return str += "volta inicio";

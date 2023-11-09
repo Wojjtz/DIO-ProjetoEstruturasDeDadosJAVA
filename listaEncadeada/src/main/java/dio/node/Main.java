@@ -11,10 +11,9 @@ public class Main {
         list.add(5);
         System.out.println(list);
 
-        list.remove(0);
+        System.out.println(list.remove(2));
         System.out.println(list);
 
-        System.out.println(list.get(0));
 
     }
 }
